@@ -21,3 +21,10 @@ Make sure you have the following installed:
 * Routing: The app includes several routes for the admin and shop pages.
 * Middleware: The app uses middleware functions such as body-parser and express.static to handle request bodies and serve static files.
 * Static File Serving: The app serves static files such as images, CSS files, and JavaScript files from the "public" directory.
+
+## Directories
+
+* `routes`: Contains the route files for the admin and shop pages.
+* `util`: Contains the helper function for navigation.
+* `public`: Contains the static files for the app.
+* `views`: Contains the HTML files for the app.
