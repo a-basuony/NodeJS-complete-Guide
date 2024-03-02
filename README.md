@@ -28,3 +28,27 @@ Make sure you have the following installed:
 * `util`: Contains the helper function for navigation.
 * `public`: Contains the static files for the app.
 * `views`: Contains the HTML files for the app.
+  
+
+## Scripts
+
+* `start`: Starts the server.
+* `test`: Runs tests (if any).
+
+## Dependencies
+
+* `body-parser`: Middleware for handling request bodies.
+* `express`: Web framework for Node.js.
+* `path`: Module for handling file paths.
+
+## License
+
+This project is licensed under the MIT License.
+
+## Contact
+
+For any questions or concerns, please contact [Your Name].
+
+## Additional Notes
+
+Feel free to modify and extend this app as needed. Make sure to update the README file accordingly.
