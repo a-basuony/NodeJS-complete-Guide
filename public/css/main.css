@@ -1,88 +1,108 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700");
+
+* {
+  box-sizing: border-box;
+}
+
 body {
   padding: 0;
   margin: 0;
-  font-family: "Montserrat", sans-serif;
-  background-color: #f0f0f0;
+  font-family: "Open Sans", sans-serif;
 }
+
 main {
   padding: 1rem;
+  margin: auto;
 }
+
 .main-header {
   width: 100%;
   height: 3.5rem;
-  background-color: #cde027;
+  background-color: #00695c;
   padding: 0 1.5rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 100;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
 .main-header__nav {
   height: 100%;
   display: flex;
   align-items: center;
 }
+
 .main-header__item-list {
   list-style: none;
   margin: 0;
   padding: 0;
   display: flex;
 }
+
 .main-header__item {
   margin: 0 1rem;
   padding: 0;
 }
+
 .main-header__item a {
   text-decoration: none;
-  color: black;
-  font-weight: 500;
-  font-size: 1rem;
-  transition: color 0.3s ease;
+  color: white;
 }
+
 .main-header__item a:hover,
 .main-header__item a:active,
 .main-header__item a.active {
-  color: #8420c6;
+  color: #ffeb3b;
 }
 
-.product-form {
-  width: 20rem;
-  max-width: 90%;
-  margin: auto;
-  margin-top: 4rem;
-}
-.form-control {
-  margin: 1rem 0;
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: stretch;
 }
 
-.form-control label,
-.form-control input {
-  display: block;
+.card {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+}
+
+.card__header,
+.card__content {
+  padding: 1rem;
+}
+
+.card__header h1,
+.card__content h1,
+.card__content h2,
+.card__content p {
+  margin: 0;
+}
+
+.card__image {
   width: 100%;
-  padding: 0.5rem;
-  border-radius: 3px;
 }
-.form-control input {
-  border: 1px solid #8420c6;
-  font-weight: 500;
-  font-size: 1rem;
+
+.card__image img {
+  width: 100%;
 }
-button {
-  font-weight: 500;
-  font-size: 1rem;
-  padding: 0.5rem 1rem;
+
+.card__actions {
+  padding: 1rem;
+  text-align: center;
+}
+
+.card__actions button,
+.card__actions a {
+  margin: 0 0.25rem;
+}
+
+.btn {
+  font: inherit;
+  border: 1px solid #00695c;
+  color: #00695c;
+  background: white;
   border-radius: 3px;
-  background-color: #ac50ea;
-  color: white;
   cursor: pointer;
-  transition: background-color 0.3s ease;
 }
-button:hover,
-button:active {
-  background-color: #6a1b9a;
+
+.btn:hover,
+.btn:active {
+  background-color: #00695c;
+  color: white;
 }
