@@ -3,14 +3,31 @@ const path = require("path");
 const express = require("express");
 const bodyParser = require("body-parser");
 
+// import handlebarse to work on template engine
+const expressHbs = require("express-handlebars");
+
 const app = express();
 
-// to use template engine
 // -------------------
-// Set the view engine to Pug
-app.set("view engine", "pug");
-// Set the directory where your Pug files are located
-app.set("views", "./views");
+// to use handlebars template engine
+app.engine(
+  "handlebars",
+  expressHbs({
+    layoutsDir: "views/layouts",
+    defaultLayout: "main-layout",
+    extname: "handlebars",
+  })
+); // => (file extension : 404.handlebars, )Set the view engine to Handlebars and the file extension should be the same name of handlebars
+app.set("view engine", "handlebars"); // => => Set the directory where your Pug files are located
+// Example:
+// app.engine("hbs", expressHbs()); // => file extension 404.hbs
+// app.set("view engine", "hbs"); //
+app.set("views", "./views"); // => Set the directory where your Pug files are located
+
+// -------------------
+// to use pug template engine
+// app.set("view engine", "pug"); => Set the view engine to Pug
+// app.set("views", "./views"); => Set the directory where your Pug files are located
 // -------------------
 
 const rootDir = require("./util/path");
@@ -30,7 +47,9 @@ app.use(shopRoutes);
 // page not found
 app.use((req, res) => {
   // res.status(404).sendFile(path.join(rootDir, "./views/404.html")); //.send("<h1>Page Not Found</h1>");
-  res.status(404).render("404", { pageTitle: "Page Not Found" });
+  res
+    .status(404)
+    .render("404", { pageTitle: "Page Not Found", pageNotFound: true });
 });
 
 app.listen(3000);
@@ -57,7 +76,10 @@ app.listen(3000);
 //                            });
 //               4- how to send  data to our shop.pug page => locals object : render('fileName', {key: value})
 //                    Ex:  res.render("shop", { prods: products, docTitle: "Shop" });
-
+//
+//                pug => html element with out (ending tag, and <>, . for class, # for id, attribute inside (href='')) text for html element
+//                  Ex: a.link(href="/" class=(path ==='/'? 'active': '')) click
+//
 //               5- how to use that data inside shop.pug =>
 //                    - with variables #{key}  Ex:  title #{docTitle}
 //                    - with loop=>  each {key:value} in []  Ex:  each product in prods
@@ -79,6 +101,54 @@ app.listen(3000);
 //                                                 link(rel="stylesheet", href="/css/404.css")
 //                                        Ex: block content
 //                                                 h1 Oops! Page Not Found
+//
+//
+//4- working with Handlebars
+//      1-  Installation => npm install --save express-handlebars@3.0
+//      2-  how to use it => normal html with custom syntax
+//           - variables    {{variableName}}
+//           - if    {{#if hasAttribute}} logic       {{else}}          {{/if}}
+//           - loop    {{#each array}} logic        {{this.title}}         {{/each}}
+//                      array => [{title: book}]
+//
+//      3- app.js // to use handlebars template engine
+//          app.engine("handlebars", expressHbs()); // => (file extension : 404.handlebars)Set the view engine to Handlebars and the file extension should be the same name of handlebars
+//          app.set("view engine", "handlebars"); // => => Set the directory where your Pug files are located
+//          app.set("views", "./views"); // => Set the directory where your Pug files are located
+//        Example:
+//          app.engine("hbs", expressHbs()); // => file extension 404.hbs
+//          app.set("view engine", "hbs"); //
+//
+//        4- when working with layouts: add to expressHbs({layoutsDir: "views/layouts", defaultLayout: "main-layout"}) the path and the name of that file
+//                      1-  app.engine("handlebars", expressHbs({layoutsDir: "views/layouts", defaultLayout: "main-layout"}));
+//                      2- create a file "main-layout.handlebars"
+//                      2- in "main-layout.handlebars" file if you need to render some links do =>
+//                        dynamic link =>     {{#if productCss}}    <link rel="stylesheet" href="/css/product.css" />   {{/if}}
+//                        hooks =>    {{{body}}}
+//                        active class =>   class="{{#if activeAddProduct}}active{{/if}}"
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
