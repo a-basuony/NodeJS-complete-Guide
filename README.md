@@ -1,6 +1,6 @@
-﻿# Node.js Express App
+﻿# Node.js Express App with EJS
 
-This is a simple Node.js application built using the Express framework. It includes routing, middleware, and static file serving functionality.
+This is a simple Node.js application built using the Express framework and EJS templating engine. It includes routing, middleware, and static file serving functionality.
 
 ## Prerequisites
 
@@ -26,7 +26,7 @@ Make sure you have the following installed:
 - `routes`: Contains the route files for the admin and shop pages.
 - `util`: Contains the helper function for navigation.
 - `public`: Contains the static files for the app.
-- `views`: Contains the Handlebars templates for the app.
+- `views`: Contains the EJS templates for the app.
 - `package.json`: Lists the dependencies and scripts for the app.
 
 ## Scripts
@@ -38,7 +38,7 @@ Make sure you have the following installed:
 
 - `body-parser`: Middleware for handling request bodies.
 - `express`: Web framework for Node.js.
-- `handlebars`: Templating engine for generating HTML dynamically.
+- `ejs`: Templating engine for generating HTML dynamically.
 - `path`: Module for handling file paths.
 
 ## License
@@ -51,33 +51,34 @@ For any questions or concerns, please contact [Your Name].
 
 ## Additional Notes
 
-Feel free to modify and extend this app as needed. Make sure to update the README file accordingly. This app uses Handlebars as the templating engine instead of Pug.
+Feel free to modify and extend this app as needed. Make sure to update the README file accordingly.
 
 ## Templating Engine
 
-This app uses the [Handlebars](https://handlebarsjs.com/) templating engine to generate HTML dynamically. Handlebars is a template engine for Node.js that lets you build semantic templates effectively with no frustration.
+This app uses the [EJS](https://ejs.co/) templating engine to generate HTML dynamically. EJS is a simple templating language that lets you generate HTML markup with plain JavaScript.
 
-### Why Handlebars?
+### Why EJS?
 
-Handlebars offers several advantages over traditional HTML:
+EJS offers several advantages over traditional HTML:
 
-- **Logicless**: Handlebars aims to keep the view and logic separate with no embedded JavaScript.
-- **Extensible**: Handlebars is designed to be extensible, allowing you to add your own helpers and partials to the system.
-- **Compact**: Handlebars has a very concise syntax and keeps your templates clean and easy to read.
+- **Simple Syntax**: EJS uses simple tags to embed JavaScript logic in your templates.
+- **Familiarity**: If you know JavaScript, you can use EJS without having to learn a new syntax.
+- **Performance**: EJS templates are compiled into JavaScript functions, which can be cached for better performance.
 
-### Using Handlebars in this App
+### Using EJS in this App
 
-In this app, Handlebars is used to generate the HTML for the views in the `views` directory. Each view is a Handlebars template that defines the layout and content of the page.
+In this app, EJS is used to generate the HTML for the views in the `views` directory. Each view is an EJS template that defines the layout and content of the page.
 
-Here's an example of a simple Handlebars template:
+Here's an example of a simple EJS template:
 
-```handlebars
+```ejs
+<!DOCTYPE html>
 <html>
   <head>
-    <title>My Page</title>
+    <title><%= title %></title>
   </head>
   <body>
-    <h1>Hello, world!</h1>
+    <h1><%= message %></h1>
     <p>This is my page.</p>
   </body>
 </html>
