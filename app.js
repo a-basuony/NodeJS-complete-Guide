@@ -4,25 +4,33 @@ const express = require("express");
 const bodyParser = require("body-parser");
 
 // import handlebarse to work on template engine
-const expressHbs = require("express-handlebars");
+// const expressHbs = require("express-handlebars");
 
 const app = express();
 
 // -------------------
+// using EJS as a template engine
+// Set the view engine to EJS
+app.set("view engine", "ejs");
+
+// Set the directory where your EJS files are located
+app.set("views", "views");
+
+// -------------------
 // to use handlebars template engine
-app.engine(
-  "handlebars",
-  expressHbs({
-    layoutsDir: "views/layouts",
-    defaultLayout: "main-layout",
-    extname: "handlebars",
-  })
-); // => (file extension : 404.handlebars, )Set the view engine to Handlebars and the file extension should be the same name of handlebars
-app.set("view engine", "handlebars"); // => => Set the directory where your Pug files are located
-// Example:
-// app.engine("hbs", expressHbs()); // => file extension 404.hbs
-// app.set("view engine", "hbs"); //
-app.set("views", "./views"); // => Set the directory where your Pug files are located
+// app.engine(
+//   "handlebars",
+//   expressHbs({
+//     layoutsDir: "views/layouts",
+//     defaultLayout: "main-layout",
+//     extname: "handlebars",
+//   })
+// ); // => (file extension : 404.handlebars, )Set the view engine to Handlebars and the file extension should be the same name of handlebars
+// app.set("view engine", "handlebars"); // => => Set the directory where your Pug files are located
+// // Example:
+// // app.engine("hbs", expressHbs()); // => file extension 404.hbs
+// // app.set("view engine", "hbs"); //
+// app.set("views", "./views"); // => Set the directory where your Pug files are located
 
 // -------------------
 // to use pug template engine
@@ -45,11 +53,13 @@ app.use("/admin", adminRoutes.routes);
 app.use(shopRoutes);
 
 // page not found
-app.use((req, res) => {
+app.use("*", (req, res) => {
   // res.status(404).sendFile(path.join(rootDir, "./views/404.html")); //.send("<h1>Page Not Found</h1>");
-  res
-    .status(404)
-    .render("404", { pageTitle: "Page Not Found", pageNotFound: true });
+  res.status(404).render("404", {
+    pageTitle: "Page Not Found",
+    pageNotFound: true,
+    path: req.path,
+  });
 });
 
 app.listen(3000);
@@ -127,11 +137,25 @@ app.listen(3000);
 //                        hooks =>    {{{body}}}
 //                        active class =>   class="{{#if activeAddProduct}}active{{/if}}"
 //
+//        app.engine("handlebars",expressHbs({layoutsDir: "views/layouts",defaultLayout: "main-layout",extname: "handlebars",}));
+//         app.set("view engine", "handlebars"); // => => Set the directory where your Pug files are located
+// /          app.set("views", "./views"); // => Set the directory where your Pug files are located
+
 //
 //
+// 5- working with EJS
+//           1- app.js  => // using EJS as a template engine
+//                      app.set('view engine', 'ejs'); => Set the view engine to EJS
+//                      app.set('views', './views'); => Set the directory where your EJS files are located
 //
-//
-//
+//          1- how to use it
+//              - variables      <%= variableName %> => <%= render as a text%>
+//              - if             <% if (condition) {%>     logic            <% }else {%>     logic
+//              - loop             <% for(let product of prods){ %>     logic            <% } %>     logic
+//              - layout  to render html code  <%- include('./path/file')%> => <%- render a html code%>
+//                    1- create a folder includes inside views
+//                    2- create your files inside includes folder Ex: head.ejs file
+//                    3- to reuse it inside all html files where you want use => <%- include('includes/head')%
 //
 //
 //
