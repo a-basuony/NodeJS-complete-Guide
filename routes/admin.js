@@ -1,36 +1,18 @@
 const path = require("path");
-
 const express = require("express");
+const router = express.Router();
 
 // to get the root directory name instead of {__dirname, "../"} = rootDir
 const rootDir = require("../util/path");
-
-const router = express.Router();
-
-const products = [];
+const { getAddProducts, postAddProducts } = require("../controller/admin");
 
 // /admin/add-product => GET
-router.get("/add-product", (req, res) => {
-  // res.sendFile(path.join(rootDir, "views", "add-product.html"));
-  res.render("add-product", {
-    pageTitle: "Add Product",
-    path: "/admin/add-product",
-    activeAddProduct: true,
-    formsCss: true,
-    productCss: true,
-    // layout: false,// if you don't need to use main-layout
-  });
-});
+router.get("/add-product", getAddProducts);
+
+// /admin/products => GET
+router.get("/products");
 
 // /admin/add-product => POST
-router.post("/add-product", (req, res) => {
-  products.push({ title: req.body.title });
-  // console.log(req.body);
-  res.redirect("/");
-});
+router.post("/add-product", postAddProducts);
 
-// module.exports = router;
-
-// sharing data
-exports.routes = router;
-exports.products = products;
+module.exports = router;

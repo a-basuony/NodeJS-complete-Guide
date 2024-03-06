@@ -11,6 +11,10 @@ body {
 }
 
 main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: stretch;
   padding: 1rem;
   margin: auto;
 }
@@ -54,7 +58,7 @@ main {
 .grid {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: stretch;
 }
 
@@ -76,6 +80,7 @@ main {
 
 .card__image {
   width: 100%;
+  box-sizing: border-box;
 }
 
 .card__image img {

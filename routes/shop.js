@@ -4,22 +4,13 @@ const router = express.Router();
 
 // to get the root directory name instead of {__dirname, "../"}
 const rootDir = require("../util/path");
-// import adminRoutes to access products
-const adminRoutes = require("./admin");
+const { getProducts, getIndex } = require("../controller/shop");
 
-router.get("/", (req, res) => {
-  // console.log("shop", adminRoutes.products);
-  // res.sendFile(path.join(rootDir, "views", "shop.html"));
-  const products = adminRoutes.products;
-  res.render("shop", {
-    prods: products,
-    pageTitle: "Shop",
-    path: "/",
-    hasProducts: products.length > 0,
-    activeShop: true,
-    productCss: true,
-    // layout: false, // understood  that we don't need a layout here , and we don't use the default layout
-  }); // without shop.pug
-});
+router.get("/", getIndex);
+
+router.get("/products", getProducts);
+
+router.get("/cart");
+router.get("/checkout");
 
 module.exports = router;

@@ -1,66 +1,29 @@
 const path = require("path");
-
 const express = require("express");
 const bodyParser = require("body-parser");
-
-// import handlebarse to work on template engine
-// const expressHbs = require("express-handlebars");
-
 const app = express();
-
-// -------------------
-// using EJS as a template engine
-// Set the view engine to EJS
-app.set("view engine", "ejs");
-
-// Set the directory where your EJS files are located
-app.set("views", "views");
-
-// -------------------
-// to use handlebars template engine
-// app.engine(
-//   "handlebars",
-//   expressHbs({
-//     layoutsDir: "views/layouts",
-//     defaultLayout: "main-layout",
-//     extname: "handlebars",
-//   })
-// ); // => (file extension : 404.handlebars, )Set the view engine to Handlebars and the file extension should be the same name of handlebars
-// app.set("view engine", "handlebars"); // => => Set the directory where your Pug files are located
-// // Example:
-// // app.engine("hbs", expressHbs()); // => file extension 404.hbs
-// // app.set("view engine", "hbs"); //
-// app.set("views", "./views"); // => Set the directory where your Pug files are located
-
-// -------------------
-// to use pug template engine
-// app.set("view engine", "pug"); => Set the view engine to Pug
-// app.set("views", "./views"); => Set the directory where your Pug files are located
-// -------------------
-
 const rootDir = require("./util/path");
 
 const adminRoutes = require("./routes/admin");
 const shopRoutes = require("./routes/shop");
+const ErrorController = require("./controller/error");
+
+// -------------------
+// using EJS as a template engine
+app.set("view engine", "ejs");
+app.set("views", "views");
 
 // body parser  middleware and make data accessible in req.body
 app.use(bodyParser.urlencoded({ extended: true }));
+
 // to use Public folder  as static files directory
-// The middleware function in this case is express.static(), which serves static files such as images, CSS files, and JavaScript files.
 app.use(express.static(path.join(rootDir, "public"))); // path.join(__dirname, "public")
 
-app.use("/admin", adminRoutes.routes);
+app.use("/admin", adminRoutes);
 app.use(shopRoutes);
 
 // page not found
-app.use("*", (req, res) => {
-  // res.status(404).sendFile(path.join(rootDir, "./views/404.html")); //.send("<h1>Page Not Found</h1>");
-  res.status(404).render("404", {
-    pageTitle: "Page Not Found",
-    pageNotFound: true,
-    path: req.path,
-  });
-});
+app.use("*", ErrorController);
 
 app.listen(3000);
 
@@ -163,6 +126,17 @@ app.listen(3000);
 //
 //
 //
+//
+//
+//
+//
+//
+// --------------------working with MVC
+// 1- controllers : create a folder  called controllers and put all the logic there inside products file
+//          => inside products.js  => create functions like : const getAddProducts = (req, res) => {}  and exports like: module.exports = {getAddProducts,postAddProducts,getProducts,};
+//
+//2- models : create a folder named models: & create a file product.js
+//               - Product.js :(schema and database connection) contain the schema of data base
 //
 //
 //
