@@ -53,7 +53,7 @@ For any questions or concerns, please contact [Your Name].
 
 Feel free to modify and extend this app as needed. Make sure to update the README file accordingly.
 
-## Templating Engine
+## Template Engine
 
 This app uses the [EJS](https://ejs.co/) templating engine to generate HTML dynamically. EJS is a simple templating language that lets you generate HTML markup with plain JavaScript.
 

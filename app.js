@@ -25,7 +25,9 @@ app.use(shopRoutes);
 // page not found
 app.use("*", ErrorController);
 
-app.listen(3000);
+app.listen(3000, () => {
+  console.log("iam listening on port 3000");
+});
 
 // --------------- 2- Working with Dynamic Content & template engines   ------------------------------------------------
 //
@@ -119,8 +121,22 @@ app.listen(3000);
 //                    1- create a folder includes inside views
 //                    2- create your files inside includes folder Ex: head.ejs file
 //                    3- to reuse it inside all html files where you want use => <%- include('includes/head')%
+//                    4- to reuse variable inside  html file=> <%- include('includes/head', {product: product})%
+//                    4-  <h1> <%= product.title %></h1>
 //
 //
+//
+//
+//
+//
+//----------------------- Dynamic Routes & Advanced Models
+// 1- passing and using  dynamic data into routes :id => get("/products/:productId")
+//          - (passing Route Params , passing using query params)
+//          1- /products/:productId  EX: router.get("/products/:productId", getProduct);
+//          2- to use it => req.params.productId
+//          -
+//          -
+//2-
 //
 //
 //
@@ -138,9 +154,9 @@ app.listen(3000);
 //2- models : create a folder named models: & create a file product.js
 //               - Product.js :(schema and database connection) contain the schema of data base
 //
+//3- view : holds  the HTML templates, which will be rendered by the  controller when requested by user
 //
-//
-//
+//4- data : folder  that contains JSON files used to seed the database
 //
 //
 //

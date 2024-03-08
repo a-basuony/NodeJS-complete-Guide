@@ -14,13 +14,28 @@ const getAddProducts = (req, res) => {
 
 const postAddProducts = (req, res) => {
   // products.push({ title: req.body.title });
-  const products = new Product(req.body.title);
+  const title = req.body.title;
+  const imageUrl = req.body.imageUrl;
+  const price = req.body.price;
+  const description = req.body.description;
+
+  const products = new Product(title, imageUrl, description, price); // as you define it inside model
   products.save();
-  // console.log(req.body);
   res.redirect("/");
+};
+
+const getProducts = (req, res) => {
+  Product.fetchAll((products) => {
+    res.render("admin/products", {
+      prods: products,
+      pageTitle: "Admin Products",
+      path: "admin/products",
+    });
+  });
 };
 
 module.exports = {
   getAddProducts,
   postAddProducts,
+  getProducts,
 };

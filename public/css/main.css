@@ -12,6 +12,7 @@ body {
 
 main {
   display: flex;
+  flex: 1;
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: stretch;
@@ -53,6 +54,48 @@ main {
 .main-header__item a:active,
 .main-header__item a.active {
   color: #ffeb3b;
+}
+
+main.centered {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+}
+
+main.centered h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+main.centered hr {
+  width: 70%;
+  height: 2px;
+  margin: 1rem 0;
+  background-color: #333;
+  border: none;
+}
+
+main.centered img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+main.centered h2 {
+  font-size: 2rem;
+  font-weight: normal;
+  margin-bottom: 0.5rem;
+  color: #f06c64;
+}
+
+main.centered p {
+  font-size: 1.1rem;
+  line-height: 1.5;
+  color: #555;
+  text-align: center;
+  max-width: 50%;
 }
 
 .grid {
@@ -98,7 +141,6 @@ main {
 }
 
 .btn {
-  font: inherit;
   border: 1px solid #00695c;
   color: #00695c;
   background: white;
@@ -110,4 +152,14 @@ main {
 .btn:active {
   background-color: #00695c;
   color: white;
+}
+
+@media (min-width: 768px) {
+  .main-header__nav {
+    display: flex;
+  }
+
+  #side-menu-toggle {
+    display: none;
+  }
 }
